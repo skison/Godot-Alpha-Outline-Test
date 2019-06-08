@@ -8,6 +8,14 @@ Both of these methods utilize shaders to draw pixels from the background onto/ar
 
 To take advantage of this property of SCREEN_TEXTURE, I created a small shader called [Screen.shader](https://github.com/skison/Godot-Alpha-Outline-Test/blob/master/Screen.shader). This shader simply takes any non-transparent pixels and changes them to the sorresponding SCREEN_TEXURE pixel color. I created a simple [background texture](https://github.com/skison/Godot-Alpha-Outline-Test/blob/master/Background.png) to act as the base, then added a ColorRect named "BackgroundShaderBuffer" as a child of it and set it to take the full space of the background. 
 
-I then added the Screen.shader to a ScreenShader.tres material of the BackgroundShaderBuffer. The result is that you only see background and not the ColorRect. This is important because as long as the background is in frame, Screen.shader is forced to run, which will 'lock-in' the background texture for all other calls to SCREEN_TEXTURE. This is how the circles shown in the result image are able to draw outlines that match the background color.
+I then added the Screen.shader to a ScreenShader.tres material of the BackgroundShaderBuffer. The result is that you only see the intended background texture and not the ColorRect. This is important because as long as the background is in frame, Screen.shader is forced to run, which will 'lock-in' the background texture for all other calls to SCREEN_TEXTURE. This is how the circles shown in the result image are able to draw outlines that match the background color.
 
 
+## Outline Method 1: Images as outlines (a bit simpler)
+
+The top-right portion of the result image showcases the first method of drawing alpha outlines. There are 3 Node2Ds without any scripts, and each one contains 2 sprites: a solid circle, and a white hollow circle outline. Screen.shader is applied directly to the outline sprite so that it renders the background texture where it normally would be.
+
+This method works well, but from a design standpoint it can be a bit tedious to work with since you'd need to create an outline sprite for every other sprite in the game that you'd want an outline for. One benefit of this method is that you can easily modify the inner sprite (ex: modulate) without having to worry about changing the outline too.
+
+
+## Outline Method 2: Outlines via shaders (more complex)
