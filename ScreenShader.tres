@@ -1,17 +1,6 @@
 [gd_resource type="ShaderMaterial" load_steps=2 format=2]
 
-[sub_resource type="Shader" id=1]
-code = "shader_type canvas_item;
-
-void fragment(){
-	vec4 col = texture(TEXTURE,UV).rgba;
-	
-	if (col.a > 0.0) { //only modify non-transparent parts of the image
-		col = textureLod(SCREEN_TEXTURE, SCREEN_UV, 0.0).rgba;
-	}
-	COLOR=col;
-	
-}"
+[ext_resource path="res://Screen.shader" type="Shader" id=1]
 
 [resource]
-shader = SubResource( 1 )
+shader = ExtResource( 1 )

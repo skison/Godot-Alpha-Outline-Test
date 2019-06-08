@@ -14,9 +14,9 @@ func _ready():
 	newMaterial.set_shader(newShader)
 	newMaterial.set_shader_param("modulate_color", Vector3(red, green, blue))
 	newMaterial.set_shader_param("outline_diagonals", true)
-	
+
 	$Shape.set_material(newMaterial)
-	
-	
+
+
 #	$Shape.ma
 #	$Shape.material.set_shader_param("modulateColor", Vector3(red, green, blue))

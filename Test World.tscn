@@ -4,7 +4,7 @@
 [ext_resource path="res://ScreenShader.tres" type="Material" id=2]
 [ext_resource path="res://Circle.png" type="Texture" id=3]
 [ext_resource path="res://CircleOutline.png" type="Texture" id=4]
-[ext_resource path="res://ExampleOutlineObject2.gd" type="Script" id=5]
+[ext_resource path="res://ExampleOutlineObject.gd" type="Script" id=5]
 
 [node name="Test World" type="Node2D"]
 
@@ -27,6 +27,9 @@ margin_top = 57.4351
 margin_right = 190.092
 margin_bottom = 97.4351
 color = Color( 0.27451, 0.27451, 0.27451, 1 )
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="ExampleObject1" type="Node2D" parent="."]
 editor/display_folded = true
@@ -81,7 +84,6 @@ margin_bottom = 165.701
 color = Color( 0.27451, 0.27451, 0.27451, 1 )
 
 [node name="ExampleOutlineObject1" type="Node2D" parent="."]
-editor/display_folded = true
 position = Vector2( 55.356, 140.371 )
 script = ExtResource( 5 )
 __meta__ = {
