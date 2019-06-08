@@ -19,3 +19,11 @@ This method works well, but from a design standpoint it can be a bit tedious to 
 
 
 ## Outline Method 2: Outlines via shaders (more complex)
+
+The bottom-left portion of the result image shows the result of using the [ScreenOutline shader](https://github.com/skison/Godot-Alpha-Outline-Test/blob/master/ScreenOutline.shader) to create the outline. There are 3 Node2Ds, each with just 1 sprite: a white hollow circle. This shader checks the surrounding 4 pixels (or 8 if diagonals are enabled) of all transparent pixels within the sprite to see if it neighbors any solid pixels, and if so, it becomes part of the outline and draws the SCREEN_TEXTURE color. 
+
+The problem with this approach (at least for the game concept I'm working with) is that you can't use the built-in modulate functions on the sprites that use this script, because it affects pixels after the shader runs. That means if you try to modulate a white sprite to make it blue, its outline will become visible and blue-tinted rather than 'invisible'.
+
+To fix this issue, I added a uniform vec3 modulate_color variable to the shader(as well as a modulate_alpha variable if needed). This way you can modulate its color without affecting the outline. There's still a problem though, and that's that these variables are shared between instances of the ScreenOutlineShader resource. So you can't easily modulate the colors of 2 sprites independently because the last variable overridden will affect both sprites.
+
+To overcome this hurdle, I added a shared script to the 3 
