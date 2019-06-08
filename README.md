@@ -27,3 +27,7 @@ The problem with this approach (at least for the game concept I'm working with) 
 To fix this issue, I added a uniform vec3 modulate_color variable to the shader(as well as a modulate_alpha variable if needed). This way you can modulate its color without affecting the outline. There's still a problem though, and that's that these variables are shared between instances of the ScreenOutlineShader resource. So you can't easily modulate the colors of 2 sprites independently because the last variable overridden will affect both sprites.
 
 To overcome this hurdle, I added a shared script to the 3 Node2Ds called [ExampleOutlineObject.gd](https://github.com/skison/Godot-Alpha-Outline-Test/blob/master/ExampleOutlineObject.gd). This script has 3 export vars for RGB channels so you can set them in the editor. When the Node2Ds enter the scene on \_ready, it creates a new ShaderMaterial with ScreenOutline.shader set as the shader. This makes each ShaderMaterial act independently so that each one can be modulated to a different color. I imagine this could be a bit more performance-taxing on the system, but I can't speak for sure on that. If you don't plan on modulating sprites then it probably makes more sense to just use the same material for all of them.
+
+
+
+If you can think of a better/simpler way to achieve these results, please let me know! My possible future game will appreciate it :)
