@@ -15,7 +15,7 @@ _global_script_class_icons={
 
 [application]
 
-config/name="Alpha Outline Test"
+config/name="Godot-Alpha-Outline-Test"
 run/main_scene="res://Test World.tscn"
 config/icon="res://icon.png"
 
